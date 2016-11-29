@@ -1,0 +1,20 @@
+<h2>is a {{animalType | capitalize}}!</h2>
+<p>{{pet.description.$t}}</p>
+<div class="row">
+  <div class="col-sm-4">
+    <ul class="list-group">
+
+      <li class="list-group-item">Name: {{pet.name.$t}}</li>
+      <li class="list-group-item">Breed:
+        <span ng-if="pet.breeds.breed.length > 1" ng-repeat="breed in pet.breeds.breed">{{breed.$t}}</span>
+        <span>{{pet.breeds.breed.$t}}</span>
+      </li>
+      <li class="list-group-item">Gender: {{pet.sex.$t}}</li>
+      <li class="list-group-item">Location: {{pet.contact.city.$t}}, {{pet.contact.state.$t}}</li>
+    </ul>
+  </div>
+<div class="col-sm-8" ng-if="pet">
+  <img ng-repeat="photo in pet.media.photos.photo | filter: {'@size': 'x'} | unique:'@id'" ng-src="{{photo.$t}}" alt="{{pet.name.$t}}" />
+</div>
+</div>
+<pretty-json json="pet"></pretty-json>
